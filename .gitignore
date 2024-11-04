@@ -1,4 +1,5 @@
 dist/
+.env
 node_modules/
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
