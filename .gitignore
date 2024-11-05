@@ -1,5 +1,6 @@
 dist/
 .env
+src/schema.gql
 node_modules/
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]

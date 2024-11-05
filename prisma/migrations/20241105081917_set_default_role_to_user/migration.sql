@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `users` MODIFY `role_id` INTEGER NOT NULL DEFAULT 1;
