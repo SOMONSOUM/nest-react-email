@@ -5,7 +5,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
 export class ResourceService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(input: CreateResourceInput) {
     const resource = await this.prisma.resource.findUnique({
@@ -24,6 +24,10 @@ export class ResourceService {
   }
 
   async findAll() {
-    return await this.prisma.resource.findMany();
+    return await this.prisma.resource.findMany({
+      include: {
+        permissions: true,
+      }
+    });
   }
 }

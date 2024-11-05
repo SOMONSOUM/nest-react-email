@@ -3,10 +3,11 @@ import { UserService } from "./user.service";
 import { User } from "./entities/user.entity";
 import { CreateUserInput } from "./dto/create-user.input";
 import { UpdateUserInput } from "./dto/update-user.input";
+import { AssignRoleToUserInput } from "./dto/assign-role-to-user.input";
 
 @Resolver(() => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Mutation(() => User, { name: "register" })
   async createUser(@Args("createUserInput") createUserInput: CreateUserInput) {
@@ -24,8 +25,8 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  updateUser(@Args("updateUserInput") updateUserInput: UpdateUserInput) {
-    return this.userService.update(updateUserInput.id, updateUserInput);
+  assignRole(@Args("input") input: AssignRoleToUserInput) {
+    return this.userService.assignRole(input);
   }
 
   @Mutation(() => User)

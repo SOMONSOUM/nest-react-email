@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { AuthorizationService } from "./authorization.service";
+import { AuthorizationService } from "./services/authorization.service";
 import { AuthorizationResolver } from "./authorization.resolver";
 import { ResourceService } from "./services/resource.service";
 import { PermissionService } from "./services/permission.service";
@@ -14,4 +14,4 @@ import { PrismaService } from "src/prisma/prisma.service";
     PrismaService,
   ],
 })
-export class AuthorizationModule {}
+export class AuthorizationModule { }

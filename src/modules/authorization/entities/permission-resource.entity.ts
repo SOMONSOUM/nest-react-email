@@ -1,9 +1,7 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
-import { Permission as PermissionSchema } from "@prisma/client";
-import { Resource } from "./resource.entity";
 
 @ObjectType()
-export class Permission implements PermissionSchema {
+export class PermissionResource {
   @Field(() => Int)
   id: number;
 
@@ -13,10 +11,8 @@ export class Permission implements PermissionSchema {
   @Field(() => String, { nullable: true })
   description: string | null;
 
-  resourceId: number | null;
-
-  @Field(() => Resource, { nullable: true })
-  resource: Resource | null;
+  @Field(() => String, { nullable: true })
+  resource: string | null;
 
   @Field(() => Date)
   createdAt: Date;

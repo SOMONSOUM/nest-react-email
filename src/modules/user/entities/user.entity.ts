@@ -20,8 +20,8 @@ export class User implements UserSchema {
 
   roleId: number;
 
-  @Field(() => Role, { nullable: true })
-  role: Role | null;
+  @Field(() => Role)
+  role: Role
 
   @Field(() => Date)
   createdAt: Date;

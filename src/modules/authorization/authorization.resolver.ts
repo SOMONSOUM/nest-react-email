@@ -5,13 +5,15 @@ import { Resource } from "./entities/resource.entity";
 import { PermissionService } from "./services/permission.service";
 import { CreatePermissionInput } from "./dto/create-permission.input";
 import { Permission } from "./entities/permission.entity";
+import { Role } from "./entities/role.entity";
+import { AssignPermissionInput } from "./dto/assign-permission.input";
 
 @Resolver()
 export class AuthorizationResolver {
   constructor(
     private readonly resourceService: ResourceService,
     private readonly permissionService: PermissionService
-  ) {}
+  ) { }
 
   @Mutation(() => Resource)
   async createResource(@Args("input") input: CreateResourceInput) {
@@ -19,7 +21,7 @@ export class AuthorizationResolver {
   }
 
   @Mutation(() => Permission)
-  async createPermission(input: CreatePermissionInput) {
+  async createPermission(@Args("input") input: CreatePermissionInput) {
     return await this.permissionService.create(input);
   }
 
@@ -31,5 +33,10 @@ export class AuthorizationResolver {
   @Query(() => [Permission])
   async permissions() {
     return await this.permissionService.findAll();
+  }
+
+  @Mutation(() => Role)
+  async assignPermission(@Args("input") input: AssignPermissionInput) {
+    return await this.permissionService.assignPemission(input);
   }
 }

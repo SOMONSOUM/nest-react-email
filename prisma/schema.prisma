@@ -30,11 +30,12 @@ model User {
 }
 
 model Role {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String? @db.Text
 
-  RolePermission RolePermission[]
-  User           User[]
+  rolePermission RolePermission[]
+  user           User[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @map("updated_at")
@@ -43,8 +44,9 @@ model Role {
 }
 
 model Permission {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String? @db.Text
 
   rolePermission RolePermission[]
   resource       Resource?        @relation(fields: [resourceId], references: [id])
@@ -57,8 +59,9 @@ model Permission {
 }
 
 model Resource {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String? @db.Text
 
   permissions Permission[]
 
